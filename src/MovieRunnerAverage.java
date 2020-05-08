@@ -45,8 +45,10 @@ public class MovieRunnerAverage {
         printAverageRatings();
         getAverageRatingOneMovie();
 
-        ThirdRatings thirdRatings = new ThirdRatings("./data/ratings.csv");
+        ThirdRatings thirdRatings = new ThirdRatings("/home/dorra/Documents/Professional stuff/projects/RecommendationSystem/src/data/ratings.csv");
         thirdRatings.getAverageRatings(3);
+
+
 
     }
 }

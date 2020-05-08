@@ -4,6 +4,7 @@
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class ThirdRatings {
     private ArrayList<PlainRater> myPlainRaters;
@@ -42,18 +43,38 @@ public class ThirdRatings {
     }
 
 
-    public void getAverageRatings(int minimalRaters) throws IOException{
+    public int getAverageRatings(int minimalRaters) throws IOException{
         ArrayList<String> movies = MovieDatabase.filterBy(new TrueFilter());
         ArrayList<Rating> MoviesAverageRating = new ArrayList<>();
-        int i=-1;
+
+        int i=0;
         for (String currentMovie: movies) {
-            i++;
             if (getAverageByID(currentMovie,minimalRaters)!=0) {
                 MoviesAverageRating.add(new Rating(currentMovie,getAverageByID(currentMovie,minimalRaters)));
                 System.out.println(MoviesAverageRating.get(i));
+                System.out.println(i);
+                i++;
             }
         }
-        //return MoviesAverageRating;
+        return MoviesAverageRating.size();
+    }
+
+    public ArrayList<Rating> getAverageRatingsByFilter(int minimalRaters, Filter filterCriteria) throws IOException {
+
+        ArrayList<Rating> averageRatingListByFilter = new ArrayList<Rating>();
+        ArrayList<String> movies = MovieDatabase.filterBy(filterCriteria);
+
+        for (String id:movies) {
+            double avg = getAverageByID(id,minimalRaters);
+            if (avg!=0) {
+                Rating currentRating = new Rating(id,avg);
+                averageRatingListByFilter.add(currentRating);
+            }
+        }
+        return averageRatingListByFilter;
+
+
+
     }
 
 

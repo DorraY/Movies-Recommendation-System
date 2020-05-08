@@ -13,7 +13,7 @@ public class MovieDatabase {
     public static void initialize(String moviefile) throws IOException {
         if (ourMovies == null) {
             ourMovies = new HashMap<String,Movie>();
-            loadMovies("data/" + moviefile);
+            loadMovies("/home/dorra/Documents/Professional stuff/projects/RecommendationSystem/src/data/" + moviefile);
         }
     }
 
